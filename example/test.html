@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+
+<body>
+<h1>测试</h1>
+<div id="content"></div>
+</body>
+
+<script src="student.js"></script>
+<script src="test.js"></script>
+
+<script>
+    var stu = new Student({"name": "小明", "age": 12});
+    stu.print();
+    
+    var tec = new Teacher();
+    tec.init({"name": "李军", "age": 26});
+    tec.test();
+</script>
+
+</html>
