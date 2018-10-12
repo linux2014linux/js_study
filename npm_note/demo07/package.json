@@ -1,0 +1,12 @@
+{
+  "name": "demo07",
+  "version": "1.0.0",
+  "description": "node.js中包和模块的概念",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
