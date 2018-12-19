@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>01_first</title>
+  </head>
+  <body>
+    <p></p>
+    <div id="app-15">
+      <!-- myFocus将无法被触发 -->
+      <!--base-input v-model="value" v-bind:label="label" v-on:focus.native="myFocus"></base-input-->
+      <!-- 需要在组件中使用$listeners来重新处理focus事件,以使得组件可以处理 -->
+      <base-input v-model="value" v-bind:label="label" v-on:focus.native="onFocus"></base-input>
+      <br>
+      <span>{{ value }}</span>
+    </div>
+    <p></p>
+    <div id="app-14">
+      <base-checkbox v-model="lovingVue"></base-checkbox>
+      <label>{{ lovingVue }}</label>
+    </div>
+    <p></p>
+    <p></p>
+
+    <div id="app-13">
+      <!-- 复选框 -->
+      <p>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+      </p>
+      <p>
+        <!-- label for的值需与input元素id相同时,点击label会与input联动;不相同,则不会 -->
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="rose" value="Rose" v-model="checkedNames">
+        <label for="rose">Rose</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+      </p>
+
+      <!-- 单选框 -->
+      <p>
+        <input type="radio" id="one" value="one" v-model="radio">
+        <label for="one">one</label>
+        <input type="radio" id="two" value="two" v-model="radio">
+        <label for="two">two</label>
+        <br>
+        <span>Choice: {{ radio }}</span>
+      </p>
+
+      <!-- 下拉列表 -->
+      <p>
+        <select v-model="selected">
+          <option disabled value="">请选择</option>
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+      </p>
+      <p>
+        <select v-model="selected_dynamic">
+          <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+        <br>
+        <span>Selected: {{ selected_dynamic}}</span>
+      </p>
+
+      <!-- 多选列表 -->
+      <p>
+        <select v-model="selected2" multiple style="width: 50px">
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+        <br>
+        <span>Selected: {{ selected2 }}</span>
+      </p>
+    </div>
+    <p></p>
+
+    <div id="app-12">
+      <button v-for="tab in tabs" v-bind:key="tab" v-bind:class="['tab-button', { active: currentTab === tab }]" v-on:click="currentTab = tab">{{ tab }}</button>
+      <component v-bind:is="currentTabComponent" class="tab">
+      </component>
+    </div>
+
+    <div id="app-11">
+      <myalert type="success">
+        <strong>Success</strong> good news
+      </myalert>
+      <myalert type="warning">
+        <strong>Warning</strong> news
+      </myalert>
+      <myalert type="error">
+        <strong>Error</strong> terrible news
+      </myalert>
+    </div>
+
+    <div id="app-10">
+      <div v-bind:style="{fontSize: postFontSize + 'em'}">
+        <blog-list v-for="blog in blogs" v-bind:id="blog.id" v-bind:post="blog" v-on:enlarge-text="postFontSize += $event" v-on:ensmall-text="postFontSize -= 0.1"></blog-list>
+      </div>
+    </div>
+
+    <div id="app-9">
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+    </div>
+
+    <div id="app-8">
+      <button v-on:click="counter += 1">Add 1</button>
+      <p>The button above has been clicked {{ counter }} times.</p>
+    </div>
+    <p></p>
+
+    <div id="app-7">
+      <input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
+      <ul>
+        <!--<li is="todo-item2"-->
+            <!--v-for="(todo, index) in todos"-->
+            <!--v-bind:key="todo.id"-->
+            <!--v-bind:id="todo.id"-->
+            <!--v-bind:title="todo.title"-->
+            <!--v-on:remove="todos.splice(index, 1)">-->
+        <!--</li>-->
+
+        <todo-item2
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-bind:id="todo.id"
+            v-bind:title="todo.title"
+            v-on:remove="todos.splice(index, 1)">
+        </todo-item2>
+      </ul>
+    </div>
+
+    <div id="app-6">
+      <ul>
+        <li v-for="(item, index) in items">
+          {{ parentMessage }} - {{ index }} - {{ item.message }}
+        </li>
+      </ul>
+      <p></p>
+      <ul>
+        <li v-for="(value, key, index) in object" v-bind:id="index">
+          {{ index }}.{{ key }}: {{ value }}
+        </li>
+      </ul>
+      <li v-for="n in eventNumbers">{{ n }}</li>
+      <ul>
+        <template v-for="item in templesItems">
+          <li> {{ item.msg }} </li>
+          <li class="driver"></li>
+        </template>
+      </ul>
+
+      <ul>
+        <li v-for="student in students" v-if="student.age > 10">
+          name: {{ student.name }}, age: {{ student.age }}
+        </li>
+      </ul>
+    </div>
+
+    <div id="app-5">
+      <h1 v-if="ok">Yes</h1>
+      <h1 v-else>No</h1>
+      <template v-if="ok">
+        <h1>Title</h1>
+        <p>段落1</p>
+        <p>段落2</p>
+      </template>
+      <template v-else>
+        <h1>No Title</h1>
+      </template>
+      <template v-if="loginType === 'username'">
+        <!-- label 元素将被复用 -->
+        <label>UserName</label>
+        <input placeholder="Enter your username" key="username-input">
+      </template>
+      <template v-if="loginType === 'email'">
+        <label>Email</label>
+        <input placeholder="Entery your email" key="email-input">
+      </template>
+      <p>
+        <button v-on:click="changeInput">切换</button>
+      </p>
+    </div>
+
+    <div id="app-4">
+      <div v-bind:style="myStyleObject">
+        v-bind:style
+      </div>
+    </div>
+
+    <div id='app-3'>
+      <div v-bind:class="{active: isActive, 'text-danger': hasError}">v-bind:class 1</div>
+      <div v-bind:class="classObject">v-bind:class 2</div>
+      <div v-bind:class="classObject2">v-bind:class 3</div>
+    </div>
+
+    <div id="app-2">
+      <p>
+        Ask a yes/no question:
+        <input v-model="question">
+      </p>
+      <p>{{ answer }}</p>
+    </div>
+
+    <div id="app-1">
+      <p>fullname: {{fullname}}</p>
+      <p>firstname: {{firstname}}</p>
+      <p>lastname: {{lastname}}</p>
+    </div>
+
+    <div id="app-0">
+      <ol>
+        <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+        >
+        </todo-item>
+      </ol>
+    </div>
+
+    <div id="app">
+    </div>
+  </body>
+</html>
+
