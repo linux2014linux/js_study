@@ -7,17 +7,21 @@
     >
       <el-menu-item v-for="(item) in menus" :index="item.path" :key="item.name">
         <i class="el-icon-menu"></i>
-        <span>{{item.name}}</span>
+        <span class="menuTextStyle">{{$t(""+item.name)}}</span>
       </el-menu-item>
     </el-menu>
   </div>
 </template>
 
 <script>
+
 import '../../router'
 import gstyle from '../../layout/setting'
+import { i18n } from '../../lang/lang'
+
 export default {
   name: 'SideMenu',
+  i18n,
   data () {
     return {
       menus: [],
@@ -69,4 +73,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .menuTextStyle {
+    white-space: normal;
+    position: absolute;
+    line-height: 15px;
+    top: 21px;
+  }
 </style>

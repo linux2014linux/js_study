@@ -3,7 +3,7 @@ export default ({
     position: 'fixed',
     top: '0px',
     left: '0px',
-    maxWidth: '150px',
+    width: '150px',
     height: '100%',
     overflowY: 'auto',
     wordWrap: 'break-word',
@@ -17,8 +17,7 @@ export default ({
     right: '0px',
     wordWrap: 'normal',
     color: 'lightpink',
-    fontSize: 'medium',
-    backgroundColor: '#42b983'
+    fontSize: 'medium'
   },
   contentStyle: {
     position: 'fixed',

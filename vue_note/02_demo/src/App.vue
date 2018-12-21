@@ -12,6 +12,7 @@
 import SideMenu from './pages/widgets/SideMenu'
 import Header from './pages/widgets/Header'
 import gstyle from './layout/setting'
+
 export default {
   name: 'App',
   data () {
