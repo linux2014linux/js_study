@@ -1,15 +1,16 @@
 <template>
   <div class="hello">
-    {{msg}}DashBoard
+    {{$t(msg)}} {{$t("DashBoard")}}
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'DashBoard',
   data () {
     return {
-      msg: 'Welcome '
+      msg: 'Welcome'
     }
   }
 }

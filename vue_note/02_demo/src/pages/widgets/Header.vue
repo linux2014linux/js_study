@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import gstyle from '../../layout/setting'
-import {i18n} from '../../lang/lang'
+import { gstyle } from '../../layout/setting'
+import { i18n } from '../../lang/lang'
 
 export default {
   name: 'Header',

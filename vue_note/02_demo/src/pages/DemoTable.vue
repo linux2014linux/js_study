@@ -1,10 +1,11 @@
 <template>
   <div class="hello">
-    {{msg}} DemoTable!
+    {{$t(msg)}} {{$t("DemoTable")}}
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'DemoTable',
   data () {

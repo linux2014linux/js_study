@@ -1,4 +1,4 @@
-export default ({
+const gstyle = {
   sideMenuStyle: {
     position: 'fixed',
     top: '0px',
@@ -27,4 +27,6 @@ export default ({
     right: '0px',
     backgroundColor: 'green'
   }
-})
+}
+
+export {gstyle}

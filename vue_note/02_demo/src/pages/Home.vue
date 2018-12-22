@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    {{msg}}Home
+    {{$t(msg)}} {{$t("Home")}}
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome '
+      msg: 'Welcome'
     }
   }
 }

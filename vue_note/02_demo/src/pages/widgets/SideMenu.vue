@@ -16,12 +16,10 @@
 <script>
 
 import '../../router'
-import gstyle from '../../layout/setting'
-import { i18n } from '../../lang/lang'
+import { gstyle } from '../../layout/setting'
 
 export default {
   name: 'SideMenu',
-  i18n,
   data () {
     return {
       menus: [],
@@ -75,6 +73,7 @@ export default {
 <style scoped>
   .menuTextStyle {
     white-space: normal;
+    word-break: break-all;
     position: absolute;
     line-height: 15px;
     top: 21px;
