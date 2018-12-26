@@ -4,8 +4,8 @@
 * 匹配最新的依赖包 
 
 # --save-prod和--save-dev
---save-prod 将依赖安装在"dependencies"中.
---save-dev 将依赖安装在"devDependencies"中.
+--save == --save-prod 将依赖安装在"dependencies"中, 生产依赖.
+--save-dev 将依赖安装在"devDependencies"中, 开发依赖.
 默认执行npm install <package>是安装在--save-prod里面的,即dependencies中.
 
 # 全局操作
