@@ -33,10 +33,6 @@ const gstyle = {
     right: '0px',
     position: 'fixed',
     textAlign: 'center'
-  },
-  menuShow: {
-    top: 'true',
-    left: 'false'
   }
 }
 

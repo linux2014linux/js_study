@@ -5,7 +5,9 @@
       :router="true"
       :default-active="defaultActive"
       active-text-color="#409EFF"
-      class="el-menu-vertical-demo"
+      class="el-menu-demo"
+      mode="vertical"
+      @select="handleSelect"
     >
       <el-menu-item v-for="(item) in menus" v-if="!(item.hasOwnProperty('children'))" :index="item.path" :key="item.name">
         <i class="el-icon-menu"></i>
@@ -38,7 +40,7 @@ export default {
       menus: [],
       isCollapse: false,
       sideMenuStyle: gstyle.sideMenuStyle,
-      defaultActive: '/'
+      defaultActive: '/dashboard'
     }
   },
   created () {
@@ -46,7 +48,6 @@ export default {
     self.$router.options.routes.forEach(route => {
       self.menus.push(route)
     })
-    console.log(self.menus)
     let curWidth = window.document.documentElement.clientWidth
     if (curWidth < 1000) {
       self.isCollapse = true
@@ -77,6 +78,9 @@ export default {
         document.getElementById('gcontent').style.left = curMenuWidth + 'px'
         document.getElementById('gsidemenu').style.width = curMenuWidth + 'px'
       }
+    },
+    handleSelect (key, path) {
+      this.default = key
     }
   }
 }

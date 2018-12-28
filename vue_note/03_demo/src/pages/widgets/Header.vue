@@ -4,24 +4,34 @@
       <div style="width: 150px;background-color: lightgreen;left: 0px;position: fixed">
         LOGO
       </div>
-      <!--<div style="position: fixed; left: 150px; right: 150px; background-color: gray">-->
+      <div style="position: fixed; left: 150px; right: 150px; background-color: gray">
 
-        <!--<el-menu-->
-          <!--class="el-menu-vertical-demo"-->
-          <!--mode="horizontal"-->
-          <!--:collapse="isCollapse"-->
-          <!--:router="true"-->
-          <!--background-color="#545c64"-->
-          <!--text-color="#fff"-->
-          <!--active-text-color="#ffd04b"-->
-        <!--&gt;-->
-          <!--<el-menu-item v-for="(item) in menus" :index="item.path" :key="item.name">-->
-            <!--<i class="el-icon-menu"></i>-->
-            <!--<span class="menuTextStyle">{{$t(""+item.name)}}</span>-->
-          <!--</el-menu-item>-->
-        <!--</el-menu>-->
+        <el-menu
+          :router="true"
+          :default-active="defaultActive"
+          active-text-color="#409EFF"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+        >
+          <el-menu-item v-for="(item) in menus" v-if="!(item.hasOwnProperty('children'))" :index="item.path" :key="item.name">
+            <i class="el-icon-menu"></i>
+            <span class="menuTextStyle">{{$t(""+item.name)}}</span>
+          </el-menu-item>
 
-      <!--</div>-->
+          <el-submenu v-for="(item) in menus" v-if="item.hasOwnProperty('children')" :index="item.path" :key="item.name">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span class="menuTextStyle">{{$t(""+item.name)}}</span>
+            </template>
+            <el-menu-item v-for="(child) in item.children" :index="item.path + '/' + child.path" :key="child.name">
+              <i class="el-icon-menu"></i>
+              <span class="menuTextStyle">{{$t(""+child.name)}}</span>
+            </el-menu-item>
+          </el-submenu>
+        </el-menu>
+
+      </div>
       <div :style="userProfileStyle">
         <el-button-group>
           <el-button size="mini" type="primary" @click="switchLang('en')">EN</el-button>
@@ -44,7 +54,8 @@ export default {
       menus: [],
       msg: 'Welcome ',
       headerStyle: gstyle.headerStyle,
-      userProfileStyle: gstyle.userProfileStyle
+      userProfileStyle: gstyle.userProfileStyle,
+      defaultActive: '/dashboard'
     }
   },
   created () {
@@ -57,6 +68,9 @@ export default {
     switchLang (lang) {
       i18n.locale = lang
       console.log(lang)
+    },
+    handleSelect (key, path) {
+      this.default = key
     }
   }
 }
